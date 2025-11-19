@@ -1,0 +1,16 @@
+class Solution {
+    public static int getDouble(int num) {
+        return num * 2;
+    }
+    public int findFinalValue(int[] nums, int original) {
+        HashSet<Integer> set = new HashSet<>();
+        for(int num : nums) {set.add(num);}
+        if(!set.contains(original)) {return original;}
+        int n = original;
+        while(set.contains(n)) {
+            int temp = getDouble(n);
+            n = temp;
+        }
+        return n;
+    }
+}
