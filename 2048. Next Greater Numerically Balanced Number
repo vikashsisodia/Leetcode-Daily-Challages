@@ -1,0 +1,44 @@
+Example 1:
+
+Input: n = 1
+Output: 22
+Explanation: 
+22 is numerically balanced since:
+- The digit 2 occurs 2 times. 
+It is also the smallest numerically balanced number strictly greater than 1.
+Example 2:
+
+Input: n = 1000
+Output: 1333
+Explanation: 
+1333 is numerically balanced since:
+- The digit 1 occurs 1 time.
+- The digit 3 occurs 3 times. 
+It is also the smallest numerically balanced number strictly greater than 1000.
+Note that 1022 cannot be the answer because 0 appeared more than 0 times.
+
+☕ (Java)
+
+class Solution {
+    public static boolean checkBalanced(int num) {
+        String str = Integer.toString(num);
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(char ch : str.toCharArray()) {
+            map.put(ch,map.getOrDefault(ch,0) + 1);
+        }
+        for(var v : map.entrySet()) {
+            if((v.getKey() - '0') != v.getValue()) {return false;}
+        }
+        return true;
+    }
+    public int nextBeautifulNumber(int n) {
+
+        for(int i = n;;i++) {
+            if(checkBalanced(i)) {
+                if(i > n) {
+                    return i;
+                }
+            }
+        }
+    }
+}
