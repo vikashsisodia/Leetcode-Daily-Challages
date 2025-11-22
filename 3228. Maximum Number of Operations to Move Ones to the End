@@ -1,0 +1,49 @@
+Example 1:
+
+Input: s = "1001101"
+
+Output: 4
+
+Explanation:
+
+We can perform the following operations:
+
+Choose index i = 0. The resulting string is s = "0011101".
+Choose index i = 4. The resulting string is s = "0011011".
+Choose index i = 3. The resulting string is s = "0010111".
+Choose index i = 2. The resulting string is s = "0001111".
+🧠⚙️ 🤯 🧩 🔢 📐 🔍 🧮
+☕ (Java) Solution.
+
+
+class Solution {
+    public int maxOperations(String s) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int count = 0;
+        for(char ch : s.toCharArray()) {
+            if(ch == '1') {
+                count++;
+            }else{
+                if(count > 0) {
+                    list.add(count);
+                }
+                count = 0;
+            }
+        }
+        if(list.isEmpty()) { return 0; };
+        if(list.size() == 1) { return list.get(0); }
+        int prefix[] = new int[list.size()];
+        prefix[0] = list.get(0);
+        for(int i = 1;i < list.size();i++) {
+            prefix[i] = prefix[i - 1] + list.get(i);
+        }
+        int sum = 0;int first = prefix[0];
+        sum += first;
+        for(int i = 1;i < list.size();i++) {
+            int prev = prefix[i - 1];
+            sum += prev;
+            sum += list.get(i);
+        }
+        return sum;
+    }
+}
