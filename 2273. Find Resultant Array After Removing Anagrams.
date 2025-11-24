@@ -1,0 +1,24 @@
+Input: words = ["abba","baba","bbaa","cd","cd"]
+Output: ["abba","cd"]
+code--
+class Solution {
+    public List<String> removeAnagrams(String[] words) {
+        String f = words[0];
+        char c[] = f.toCharArray();
+        Arrays.sort(c);
+        String AnaGram = new String(c);
+        ArrayList<String> list = new ArrayList<>();
+        list.add(words[0]);
+        for(int i = 1;i < words.length;i++) {
+            String temp = words[i];
+            char ch[] = temp.toCharArray();
+            Arrays.sort(ch);
+            String str = new String(ch);
+            if(!(str.equals(AnaGram))) {
+                list.add(temp);
+            }
+            AnaGram = str;
+        }
+        return list;
+    }
+}
