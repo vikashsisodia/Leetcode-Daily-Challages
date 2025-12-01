@@ -1,0 +1,52 @@
+class Solution {
+    public static String onlyZeroResult(String str) {
+        String result = str.replaceAll("0+","0");
+        return result;
+    }
+    public static String removeTailingZeros(String strx) {
+        String result = strx.replaceAll("^0+","");
+        return result;
+    }
+
+    public int compareVersion(String version1, String version2) {
+        String arr1[] = version1.split("[.]");
+        String arr2[] = version2.split("[.]");
+        int lenFirst = arr1.length;
+        int lenSecond = arr2.length;
+        ArrayList<String> listx = new ArrayList<>();
+        ArrayList<String> listy = new ArrayList<>();
+        for(String a : arr1) {listx.add(a);}
+        for(String b : arr2) {listy.add(b);}
+        if(lenFirst < lenSecond) {
+            for(int i = 0;i < (lenSecond - lenFirst);i++) {
+                listx.add("0");
+            }
+        }
+        if(lenFirst > lenSecond) {
+            for(int i = 0;i < (lenFirst - lenSecond);i++) {
+                listy.add("0");
+            }
+        }
+        int result = 0;
+        for(int i = 0;i < listx.size();i++) {
+            String firstStr = listx.get(i);
+            String secondStr = listy.get(i);
+            if(firstStr.matches("^[0]+$")) {
+                firstStr = onlyZeroResult(firstStr);
+            }else{
+                firstStr = removeTailingZeros(firstStr);
+            }
+            if(secondStr.matches("^[0]+$")) {
+                secondStr = onlyZeroResult(secondStr);
+            }else{
+                secondStr = removeTailingZeros(secondStr);
+            }
+            if(Integer.parseInt(firstStr) < Integer.parseInt(secondStr)) {
+                result = -1;break;
+            }else if(Integer.parseInt(firstStr) > Integer.parseInt(secondStr)) {
+                result = 1;break;
+            }
+        }
+        return result;
+    }
+}
