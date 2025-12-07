@@ -1,0 +1,9 @@
+class Solution {
+    public int countOdds(int low, int high) {
+        int dist = Math.abs(low - high) + 1;
+        if(low % 2 != 0 && high % 2 != 0) {
+            return (dist / 2) + 1;
+        }
+        return dist / 2;
+    }
+}
