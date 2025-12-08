@@ -1,0 +1,17 @@
+class Solution {
+    public int countTriples(int n) {
+        int arr[] = new int[n];
+        for(int i = 1;i <= n;i++) arr[i - 1] = i;
+        int count = 0, size = arr.length;
+        for(int i = 0;i <= size - 3;i++) {
+            for(int j = i + 1;j <= size - 2;j++) {
+                for(int k = j + 1;k <= size - 1;k++) {
+                    int sum = ((arr[i] * arr[i]) + (arr[j] * arr[j]));
+                    int target = arr[k] * arr[k];
+                    if(sum == target) count++;
+                }
+            }
+        }
+        return count * 2;
+    }
+}
