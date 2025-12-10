@@ -1,0 +1,9 @@
+    public static int getFact(int num) {
+        final int mod = 1000000007;
+        long fact[] = new long[1000001];
+        fact[0] = 1;
+        for(int i = 1;i < fact.length;i++) {
+            fact[i] = (fact[i - 1] * i) % mod;
+        }
+        return (int)fact[num];
+    }
