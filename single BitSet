@@ -1,0 +1,20 @@
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int sum = 0;
+        for (int x : nums) sum += x;
+        if (sum % 2 != 0) return false;
+
+        int target = sum / 2;
+
+        BitSet dp = new BitSet();
+        dp.set(0);  // sum 0 is always possible
+
+        for (int x : nums) {
+            BitSet shifted = dp.get(0, target + 1);
+            shifted.shiftLeft(x); // (conceptually shifting bits)
+            dp.or(shifted);
+        }
+
+        return dp.get(target);
+    }
+}
