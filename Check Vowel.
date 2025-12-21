@@ -1,0 +1,11 @@
+import java.util.*;
+public class Custome {
+    public static void main(String[] args) {
+        String str = "vikashii";
+        int count = 0;
+        for(char ch : str.toCharArray()) {
+            if(Character.toString(ch).matches("[aeiou]")) {count++;}
+        }
+        System.out.println(count);
+    }
+}
