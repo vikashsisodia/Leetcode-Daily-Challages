@@ -1,0 +1,22 @@
+public int countOfSubstrings(String word, int k) {
+	int n = word.length(), res = 0;
+	char ch = '-';
+
+	HashSet<Character> set = new HashSet<>();
+	for(int i=0; i<=n-5; i++) {
+		set.clear();
+		int vct = 0, conct = 0;
+		for(int j=i; j<n && conct <= k; j++) {
+			ch = word.charAt(j);
+			if("aeiou".contains(ch+"")) {
+				if(set.add(ch)) {
+					vct++;
+				}
+			} else {
+				conct++;
+			}
+			if(vct == 5 && conct == k) res++;
+		}
+	}
+	return res;
+}
