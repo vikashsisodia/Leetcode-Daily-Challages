@@ -1,0 +1,30 @@
+class Solution {
+    public int longestPalindrome(String s) {
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(char ch : s.toCharArray()) {
+            map.put(ch,map.getOrDefault(ch,0) + 1);
+        }
+        int maxOdd = 0,even = 0,oddCount = 0,odd = 0;
+        for(var ch : map.entrySet()) {
+            if(ch.getValue() % 2 != 0) {
+                maxOdd = Math.max(maxOdd,ch.getValue());
+                oddCount++;
+            }else{
+                even += ch.getValue();
+            }
+        }
+        if(oddCount == 1) {
+            return maxOdd + even;
+        }
+        if(oddCount == 0) {return even;}
+        for(var ch : map.entrySet()) {
+            if(ch.getValue() % 2  != 0) {
+                odd += (ch.getValue() - 1);
+
+            }
+        }
+        odd -= maxOdd - 1;
+        odd += maxOdd;
+        return odd + even;
+    }
+}
