@@ -1,0 +1,21 @@
+import java.math.BigInteger;
+class Solution {
+    public int[] plusOne(int[] digits) {
+        StringBuilder sb = new StringBuilder();
+        for(int num : digits) {
+            sb.append(Integer.toString(num));
+        }
+        String str = sb.toString();
+        BigInteger big = new BigInteger(str);
+        BigInteger one = new BigInteger("1");
+        BigInteger sum = big.add(one);
+        String ans = sum.toString();
+        int arr[] = new int[ans.length()];int i = 0;
+        for(char ch : ans.toCharArray()) {
+            arr[i] = (ch - '0');
+            i++;
+        }
+        return arr;
+
+    }
+}
