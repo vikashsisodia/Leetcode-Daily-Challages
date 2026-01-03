@@ -1,0 +1,17 @@
+class Solution {
+    public static String getReverse(String str,int right) {
+        char ch[] = str.toCharArray();
+        int left = 0;
+        while(left < right) {
+            char temp = ch[left];
+            ch[left] = ch[right];
+            ch[right] = temp;
+            left++;
+            right--;
+        }
+        return new String(ch);
+    }
+    public String reversePrefix(String s, int k) {
+        return getReverse(s,k - 1);
+    }
+}
