@@ -1,0 +1,27 @@
+public class MinCostClimbing {
+
+    public static int minCost(int[] cost, int i) {
+
+        // Base Case
+        if (i >= cost.length)
+            return 0;
+
+        // Recursive Relation
+        return cost[i] + Math.min(
+                minCost(cost, i + 1),
+                minCost(cost, i + 2)
+        );
+    }
+
+    public static void main(String[] args) {
+
+        int[] cost = {10, 15, 20};
+
+        int result = Math.min(
+                minCost(cost, 0),
+                minCost(cost, 1)
+        );
+
+        System.out.println(result);
+    }
+}
